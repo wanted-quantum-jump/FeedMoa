@@ -21,7 +21,7 @@ public class Post extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private Long contentId;
+    private String contentId;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
