@@ -24,9 +24,6 @@ public class Post extends BaseTimeEntity {
     @Enumerated(value = EnumType.STRING)
     private SnsType type;
 
-    // @ManyToOne
-    // private User author;
-
     @Column(nullable = false)
     private String title;
 
