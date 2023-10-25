@@ -7,6 +7,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Getter
 @Table(name = "post")
@@ -18,7 +21,7 @@ public class Post extends BaseTimeEntity {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private Long contentId;
+    private String contentId;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
@@ -30,7 +33,8 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false)
     private String content;
 
-    private String hashtags;
+    @OneToMany(mappedBy = "post")
+    private Set<PostHashtag> postHashtags = new HashSet<>();
 
     private int viewCount = 0;
 
