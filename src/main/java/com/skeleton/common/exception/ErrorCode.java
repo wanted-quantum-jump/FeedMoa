@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
     // 예시)
     // RECRUITMENT_NOT_FOUND(HttpStatus.BAD_REQUEST, "R001", "해당하는 채용공고가 없습니다."),
+    USER_ALREADY_EXIST(HttpStatus.BAD_REQUEST, "R001", "이미 계정이 존재합니다.")
     ;
 
     private final HttpStatus httpStatus;
