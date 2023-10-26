@@ -1,11 +1,14 @@
 package com.skeleton.feed.service;
 
+import com.skeleton.common.exception.CustomException;
+import com.skeleton.common.exception.ErrorCode;
 import com.skeleton.feed.enums.SnsType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -28,7 +31,17 @@ public class SnsApiCallerService {
     public ResponseEntity<String> clickLikeOnSns(String contentId, SnsType snsType) {
         String url = Endpoint.getUrl(snsType) + contentId;
         RequestEntity<String> requestEntity = RequestEntity.post(url).body(null);
-        return restTemplate.exchange(requestEntity, String.class); //post
+        ResponseEntity<String> response = restTemplate.exchange(requestEntity, String.class);
+
+        // TODO : 각 SNS API 응답 타입을 고려하여 수정
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return response;
+        }
+        if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
+            throw new CustomException(ErrorCode.SNS_POST_NOT_FOUND);
+        }
+
+        return response;
     }
 
 
@@ -36,7 +49,7 @@ public class SnsApiCallerService {
     @AllArgsConstructor
     enum Endpoint {
         FACEBOOK(SnsType.FACEBOOK, "https://www.facebook.com/likes/"),
-        TWITTER(SnsType.INSTAGRAM, "https://www.twitter.com/likes/"),
+        TWITTER(SnsType.TWITTER, "https://www.twitter.com/likes/"),
         INSTAGRAM(SnsType.INSTAGRAM, "https://www.instagram.com/likes/"),
         THREADS(SnsType.THREADS, "https://www.threads.net/likes/");
         SnsType snsType;
