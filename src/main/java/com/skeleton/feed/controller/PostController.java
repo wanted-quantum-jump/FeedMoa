@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/feedmoa")
+@RequestMapping("/api/posts")
 public class PostController {
     private final PostService postService;
 
-    @PatchMapping("/likes/{id}")
+    @PatchMapping("/{id}/likes")
     private ResponseEntity<?> addLike(@PathVariable Long id) {
         return ResponseEntity.ok().body(postService.addLike(id));
     }
