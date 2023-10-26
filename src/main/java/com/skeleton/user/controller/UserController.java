@@ -2,6 +2,7 @@ package com.skeleton.user.controller;
 
 import com.skeleton.user.dto.UserJoinRequest;
 import com.skeleton.user.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/feedmoa/join")
-    public ResponseEntity<?> joinUser(@RequestBody UserJoinRequest request) {
+    public ResponseEntity<?> joinUser(@Valid @RequestBody UserJoinRequest request) {
 
         Long userId = userService.saveUser(request);
 
