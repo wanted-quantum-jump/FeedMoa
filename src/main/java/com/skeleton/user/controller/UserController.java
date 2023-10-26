@@ -1,7 +1,7 @@
-package com.feedmoa.user.controller;
+package com.skeleton.user.controller;
 
-import com.feedmoa.user.dto.UserJoinRequest;
-import com.feedmoa.user.service.UserService;
+import com.skeleton.user.dto.UserJoinRequest;
+import com.skeleton.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

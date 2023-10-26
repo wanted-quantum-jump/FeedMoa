@@ -1,4 +1,4 @@
-package com.feedmoa.user.entity;
+package com.skeleton.user.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

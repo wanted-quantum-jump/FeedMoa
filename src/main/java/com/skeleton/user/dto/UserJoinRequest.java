@@ -1,4 +1,4 @@
-package com.feedmoa.user.dto;
+package com.skeleton.user.dto;
 
 import lombok.Getter;
 

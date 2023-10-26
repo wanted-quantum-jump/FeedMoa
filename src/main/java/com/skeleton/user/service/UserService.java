@@ -1,8 +1,8 @@
-package com.feedmoa.user.service;
+package com.skeleton.user.service;
 
-import com.feedmoa.user.dto.UserJoinRequest;
-import com.feedmoa.user.entity.User;
-import com.feedmoa.user.repository.UserRepository;
+import com.skeleton.user.dto.UserJoinRequest;
+import com.skeleton.user.entity.User;
+import com.skeleton.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
