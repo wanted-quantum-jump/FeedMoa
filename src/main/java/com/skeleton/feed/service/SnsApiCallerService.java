@@ -19,7 +19,7 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class RestTemplateService {
+public class SnsApiCallerService {
 
     @Autowired
     private RestTemplate restTemplate;
