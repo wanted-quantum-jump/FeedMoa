@@ -28,7 +28,18 @@ public class SnsApiCallerService {
     public ResponseEntity<String> clickLikeOnSns(String contentId, SnsType snsType) {
         String url = Endpoint.getUrl(snsType) + contentId;
         RequestEntity<String> requestEntity = RequestEntity.post(url).body(null);
-        return restTemplate.exchange(requestEntity, String.class); //post
+        ResponseEntity<String> response = restTemplate.exchange(requestEntity, String.class);
+        
+        // TODO : 각 SNS API 응답 타입을 고려하여 수정
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return response;
+        }
+        if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
+            throw new CustomException(ErrorCode.SNS_POST_NOT_FOUND);
+        }
+
+        return response;
+        
     }
 
 
