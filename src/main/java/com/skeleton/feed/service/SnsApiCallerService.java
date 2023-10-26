@@ -36,7 +36,7 @@ public class SnsApiCallerService {
     @AllArgsConstructor
     enum Endpoint {
         FACEBOOK(SnsType.FACEBOOK, "https://www.facebook.com/likes/"),
-        TWITTER(SnsType.INSTAGRAM, "https://www.twitter.com/likes/"),
+        TWITTER(SnsType.TWITTER, "https://www.twitter.com/likes/"),
         INSTAGRAM(SnsType.INSTAGRAM, "https://www.instagram.com/likes/"),
         THREADS(SnsType.THREADS, "https://www.threads.net/likes/");
         SnsType snsType;
