@@ -3,6 +3,7 @@ package com.skeleton.feed.entity;
 import com.skeleton.common.entity.BaseTimeEntity;
 import com.skeleton.feed.enums.SnsType;
 import jakarta.persistence.*;
+import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,5 +46,14 @@ public class Post extends BaseTimeEntity {
     // == 비즈니스 로직 == //
     public void addlike(){
         this.likeCount +=1;
+    }
+    public void addView() {
+        this.viewCount += 1;
+    }
+
+    public List<String> getHashtagsAsStringList() {
+        return postHashtags.stream()
+                .map(postHashtag -> postHashtag.getHashtag().getName())
+                .toList();
     }
 }
