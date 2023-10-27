@@ -43,7 +43,11 @@ public class Post extends BaseTimeEntity {
     private int shareCount = 0;
     
     // == 비즈니스 로직 == //
-    public void addlike(){
+    public void addLike(){
         this.likeCount +=1;
+    }
+
+    public void addShare() {
+        this.shareCount +=1;
     }
 }

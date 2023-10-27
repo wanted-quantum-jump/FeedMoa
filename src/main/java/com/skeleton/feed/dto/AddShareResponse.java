@@ -5,13 +5,12 @@ import lombok.Getter;
 
 
 @Getter
-public class AddLikeResponse {
+public class AddShareResponse {
 
     private final Long id;
-    private final int likeCount;
-
-    public AddLikeResponse(Post post) {
+    private final int shareCount;
+    public AddShareResponse(Post post) {
         this.id = post.getId();
-        this.likeCount = post.getLikeCount();
+        this.shareCount = post.getShareCount();
     }
 }
