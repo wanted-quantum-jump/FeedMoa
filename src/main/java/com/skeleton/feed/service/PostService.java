@@ -9,6 +9,7 @@ import com.skeleton.feed.dto.AddLikeResponse;
 import com.skeleton.feed.dto.AddShareResponse;
 import com.skeleton.feed.entity.Post;
 import com.skeleton.feed.repository.PostRepository;
+import com.skeleton.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,12 +17,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
 
+    @Transactional(readOnly = true)
     public Page<PostResponse> getPostsByQuery(PostQueryRequest request, User user) {
         String hashtag = getHashtag(request, user);
         Pageable pageable = getPageable(request);
@@ -33,7 +36,7 @@ public class PostService {
     }
 
     private String getHashtag(PostQueryRequest request, User user) {
-        return StringUtils.hasText(request.getHashtag()) ? request.getHashtag() : user.getUsername();
+        return StringUtils.hasText(request.getHashtag()) ? request.getHashtag() : user.getAccount();
     }
 
     private Pageable getPageable(PostQueryRequest request) {
