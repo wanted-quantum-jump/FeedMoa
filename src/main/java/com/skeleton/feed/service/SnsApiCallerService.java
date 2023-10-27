@@ -37,7 +37,7 @@ public class SnsApiCallerService {
     }
 
     public ResponseEntity<String> clickLikeOnSns(String contentId, SnsType snsType) {
-        String url = Endpoint.getUrl(snsType) + contentId;
+        String url = LikesEndpoint.getUrl(snsType) + contentId;
         RequestEntity<String> requestEntity = RequestEntity.post(url).body(null);
         ResponseEntity<String> response = restTemplate.exchange(requestEntity, String.class);
         validateResponseFromSns(response);
@@ -55,11 +55,9 @@ public class SnsApiCallerService {
     }
 
 
-
-
     @Getter
     @AllArgsConstructor
-    enum Endpoint {
+    enum LikesEndpoint {
         FACEBOOK(SnsType.FACEBOOK, "https://www.facebook.com/likes/"),
         TWITTER(SnsType.TWITTER, "https://www.twitter.com/likes/"),
         INSTAGRAM(SnsType.INSTAGRAM, "https://www.instagram.com/likes/"),
@@ -68,7 +66,7 @@ public class SnsApiCallerService {
         String url;
 
         public static String getUrl(SnsType snsType) {
-            Optional<Endpoint> endpoint = Arrays.stream(values()).filter(value -> value.snsType.equals(snsType))
+            Optional<LikesEndpoint> endpoint = Arrays.stream(values()).filter(value -> value.snsType.equals(snsType))
                     .findAny();
             if (endpoint.isPresent())
                 return endpoint.get().url;
