@@ -3,8 +3,10 @@ package com.skeleton.feed.service;
 import com.skeleton.common.exception.CustomException;
 import com.skeleton.common.exception.ErrorCode;
 import com.skeleton.feed.dto.AddLikeResponse;
+
 import com.skeleton.feed.dto.AddShareResponse;
 import com.skeleton.feed.dto.PostQueryRequest;
+
 import com.skeleton.feed.dto.PostResponse;
 import com.skeleton.feed.entity.Post;
 import com.skeleton.feed.enums.Direction;
@@ -79,4 +81,21 @@ public class PostService {
         post.addShare();
         return new AddShareResponse(post);
     }
+//    public PostResponse getPostDetail(Long id) {
+//        Post post = getPost(id);
+//        incrementViewCount(id);
+//        return new PostResponse(post);
+//    }
+//
+//    public Post getPost(Long id) {
+//        return postRepository.findById(id).orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
+//    }
+//
+//    @Transactional
+//    public void incrementViewCount(Long postId) {
+//        Post post = getPost(postId);
+//        post.addView();
+//        postRepository.save(post);
+//
+//    }
 }
