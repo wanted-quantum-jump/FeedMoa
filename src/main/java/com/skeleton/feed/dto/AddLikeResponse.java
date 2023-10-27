@@ -2,7 +2,6 @@ package com.skeleton.feed.dto;
 
 import com.skeleton.feed.entity.Post;
 import lombok.Getter;
-import lombok.Setter;
 
 
 @Getter
