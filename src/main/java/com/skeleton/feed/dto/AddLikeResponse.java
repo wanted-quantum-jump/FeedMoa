@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 public class AddLikeResponse {
 
-    Long id;
-    private int likeCount;
+    private final Long id;
+    private final int likeCount;
 
     public AddLikeResponse(Post post) {
         this.id = post.getId();
