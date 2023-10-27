@@ -46,4 +46,8 @@ public class Post extends BaseTimeEntity {
     public void addlike(){
         this.likeCount +=1;
     }
+
+    public void addShare() {
+        this.shareCount +=1;
+    }
 }

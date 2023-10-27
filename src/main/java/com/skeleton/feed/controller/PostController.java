@@ -15,4 +15,9 @@ public class PostController {
     private ResponseEntity<?> addLike(@PathVariable Long id) {
         return ResponseEntity.ok().body(postService.addLike(id));
     }
+
+    @PatchMapping("/{id}/share")
+    private ResponseEntity<?> addShare(@PathVariable Long id) {
+        return ResponseEntity.ok().body(postService.addShare(id));
+    }
 }

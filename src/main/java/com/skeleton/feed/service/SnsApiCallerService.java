@@ -23,6 +23,8 @@ import java.util.Optional;
 @Transactional
 @RequiredArgsConstructor
 public class SnsApiCallerService {
+    // 기능 개발을 위한 요소로, Endpoint에 저장된 URL은 실제 동작하는 API URL이 아님
+    // FIXME : 외부 API URI가 확정되면 내부 Enum 수정 바람
 
     @Autowired
     private RestTemplate restTemplate;
@@ -44,6 +46,23 @@ public class SnsApiCallerService {
         return response;
     }
 
+    public ResponseEntity<String> clickShareOnSns(String contentId, SnsType snsType) {
+        String url = ShareEndpoint.getUrl(snsType) + contentId;
+        log.info(url);
+        RequestEntity<String> requestEntity = RequestEntity.post(url).body(null);
+        ResponseEntity<String> response = restTemplate.exchange(requestEntity, String.class);
+        if (response.getStatusCode() == HttpStatus.OK) {
+            return response;
+        }
+        if (response.getStatusCode() == HttpStatus.NOT_FOUND) {
+            throw new CustomException(ErrorCode.SNS_POST_NOT_FOUND);
+        }
+        log.info(response.toString().substring(0,20));
+        return response;
+    }
+
+
+
 
     @Getter
     @AllArgsConstructor
@@ -64,6 +83,26 @@ public class SnsApiCallerService {
                 return null;
         }
 
+    }
+
+    @Getter
+    @AllArgsConstructor
+    enum ShareEndpoint {
+        FACEBOOK(SnsType.FACEBOOK, "https://www.facebook.com/share/"),
+        TWITTER(SnsType.TWITTER, "https://www.twitter.com/share/"),
+        INSTAGRAM(SnsType.INSTAGRAM, "https://www.instagram.com/share/"),
+        THREADS(SnsType.THREADS, "https://www.threads.net/share/");
+        SnsType snsType;
+        String url;
+
+        public static String getUrl(SnsType snsType) {
+            Optional<ShareEndpoint> endpoint = Arrays.stream(values()).filter(value -> value.snsType.equals(snsType))
+                    .findAny();
+            if (endpoint.isPresent())
+                return endpoint.get().url;
+            else
+                return null;
+        }
     }
 
 }
