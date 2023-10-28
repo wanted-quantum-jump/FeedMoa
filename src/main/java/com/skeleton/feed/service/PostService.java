@@ -1,21 +1,21 @@
 package com.skeleton.feed.service;
 
-import com.skeleton.feed.dto.PostQueryRequest;
-import com.skeleton.feed.dto.PostResponse;
-import com.skeleton.feed.enums.Direction;
-import com.skeleton.feed.enums.SearchBy;
 import com.skeleton.common.exception.CustomException;
 import com.skeleton.common.exception.ErrorCode;
 import com.skeleton.feed.dto.AddLikeResponse;
 import com.skeleton.feed.dto.AddShareResponse;
+import com.skeleton.feed.dto.PostQueryRequest;
+import com.skeleton.feed.dto.PostResponse;
 import com.skeleton.feed.entity.Post;
+import com.skeleton.feed.enums.Direction;
+import com.skeleton.feed.enums.SearchBy;
 import com.skeleton.feed.repository.PostRepository;
-import com.skeleton.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -26,8 +26,8 @@ public class PostService {
     private final PostRepository postRepository;
 
     @Transactional(readOnly = true)
-    public Page<PostResponse> getPostsByQuery(PostQueryRequest request, User user) {
-        String hashtag = getHashtag(request, user);
+    public Page<PostResponse> getPostsByQuery(PostQueryRequest request, Authentication authentication) {
+        String hashtag = getHashtag(request, authentication);
         Pageable pageable = getPageable(request);
         String[] searchKeyword = getSearchKeyword(request);
 
@@ -36,8 +36,9 @@ public class PostService {
                 .map(post -> PostResponse.fromEntity(post, limitContent(post.getContent())));
     }
 
-    private String getHashtag(PostQueryRequest request, User user) {
-        return StringUtils.hasText(request.getHashtag()) ? request.getHashtag() : user.getAccount();
+    private String getHashtag(PostQueryRequest request, Authentication authentication) {
+        String userAccount = authentication.getPrincipal().toString();
+        return StringUtils.hasText(request.getHashtag()) ? request.getHashtag() : userAccount;
     }
 
     private Pageable getPageable(PostQueryRequest request) {
