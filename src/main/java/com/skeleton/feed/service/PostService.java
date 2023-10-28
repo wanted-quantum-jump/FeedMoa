@@ -2,6 +2,7 @@ package com.skeleton.feed.service;
 
 import com.skeleton.feed.dto.PostQueryRequest;
 import com.skeleton.feed.dto.PostResponse;
+import com.skeleton.feed.enums.Direction;
 import com.skeleton.feed.enums.SearchBy;
 import com.skeleton.common.exception.CustomException;
 import com.skeleton.common.exception.ErrorCode;
@@ -30,8 +31,8 @@ public class PostService {
         Pageable pageable = getPageable(request);
         String[] searchKeyword = getSearchKeyword(request);
 
-        return postRepository.findByHashtagAndTypeAndTitleContainingOrContentContaining(
-                        hashtag, request.getType(), searchKeyword[0], searchKeyword[1], pageable)
+        return postRepository.findPostsByConditions(
+                hashtag, request.getType(), searchKeyword[0], searchKeyword[1], pageable)
                 .map(post -> PostResponse.fromEntity(post, limitContent(post.getContent())));
     }
 
@@ -40,8 +41,9 @@ public class PostService {
     }
 
     private Pageable getPageable(PostQueryRequest request) {
-        return PageRequest.of(request.getPage(), request.getPageCount(),
-                Sort.by(request.getOrder().name(), request.getOrderBy().name()));
+        String orderBy = request.getOrderBy().getValue();
+        Sort.Direction direction = (request.getDirection() == Direction.DESC)? Sort.Direction.DESC : Sort.Direction.ASC;
+        return PageRequest.of(request.getPage(), request.getPageCount(), Sort.by(direction, orderBy));
     }
 
     private String[] getSearchKeyword(PostQueryRequest request) {
