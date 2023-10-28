@@ -29,10 +29,12 @@ public class PostService {
     public Page<PostResponse> getPostsByQuery(PostQueryRequest request, Authentication authentication) {
         String hashtag = getHashtag(request, authentication);
         Pageable pageable = getPageable(request);
-        String[] searchKeyword = getSearchKeyword(request);
+        String keyword = request.getSearch();
+        boolean searchInTitle = shouldSearchInTitle(request.getSearchBy());
+        boolean searchInContent = shouldSearchInContent(request.getSearchBy());
 
         return postRepository.findPostsByConditions(
-                hashtag, request.getType(), searchKeyword[0], searchKeyword[1], pageable)
+                hashtag, request.getType(), keyword, searchInTitle, searchInContent, pageable)
                 .map(post -> PostResponse.fromEntity(post, limitContent(post.getContent())));
     }
 
@@ -47,22 +49,12 @@ public class PostService {
         return PageRequest.of(request.getPage(), request.getPageCount(), Sort.by(direction, orderBy));
     }
 
-    private String[] getSearchKeyword(PostQueryRequest request) {
-        String title = null;
-        String content = null;
+    private boolean shouldSearchInTitle(SearchBy searchBy) {
+        return searchBy == SearchBy.TITLE || searchBy == SearchBy.TITLE_CONTENT;
+    }
 
-        if (StringUtils.hasText(request.getSearch())) {
-            if (request.getSearchBy() == SearchBy.TITLE_CONTENT) {
-                title = request.getSearch();
-                content = request.getSearch();
-            } else if (request.getSearchBy() == SearchBy.TITLE) {
-                title = request.getSearch();
-            } else if (request.getSearchBy() == SearchBy.CONTENT) {
-                content = request.getSearch();
-            }
-        }
-
-        return new String[] { title, content };
+    private boolean shouldSearchInContent(SearchBy searchBy) {
+        return searchBy == SearchBy.CONTENT || searchBy == SearchBy.TITLE_CONTENT;
     }
 
     private String limitContent(String content) {

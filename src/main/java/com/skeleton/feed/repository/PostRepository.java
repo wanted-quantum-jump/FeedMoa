@@ -14,15 +14,17 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("SELECT p FROM Post p " +
             "INNER JOIN p.postHashtags ph " +
             "INNER JOIN ph.hashtag h " +
-            "WHERE (h.name = :hashtag OR :hashtag IS NULL) " +
-            "AND (p.type = :type OR :type IS NULL) " +
-            "AND (p.title LIKE %:title% OR :title IS NULL) " +
-            "AND (p.content LIKE %:content% OR :content IS NULL)")
+            "WHERE (h.name = :hashtag) " +
+            "AND (:type IS NULL OR p.type = :type) " +
+            "AND ((:keyword IS NULL) " +
+            "OR (:searchInTitle = true AND p.title LIKE %:keyword%) " +
+            "OR (:searchInContent = true AND p.content LIKE %:keyword%))")
     Page<Post> findPostsByConditions(
             @Param("hashtag") String hashtag,
             @Param("type") SnsType type,
-            @Param("title") String title,
-            @Param("content") String content,
+            @Param("keyword") String keyword,
+            @Param("searchInTitle") boolean searchInTitle,
+            @Param("searchInContent") boolean searchInContent,
             Pageable pageable);
 }
 
