@@ -3,6 +3,7 @@ package com.skeleton.feed.controller;
 import com.skeleton.feed.dto.PostQueryRequest;
 import com.skeleton.feed.dto.PostResponse;
 import com.skeleton.feed.service.PostService;
+import com.skeleton.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public ResponseEntity<Page<PostResponse>> getPostsByQuery(@ModelAttribute PostQueryRequest request, User User) {
+    public ResponseEntity<Page<PostResponse>> getPostsByQuery(@ModelAttribute PostQueryRequest request, User user) {
         return ResponseEntity.ok().body(postService.getPostsByQuery(request, user));
     }
 

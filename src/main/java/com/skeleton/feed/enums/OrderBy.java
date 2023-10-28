@@ -1,10 +1,20 @@
 package com.skeleton.feed.enums;
 
-public enum OrderBy {
-    CREATED_AT,
-    UPDATED_AT,
-    LIKE_COUNT,
-    SHARE_COUNT,
-    VIEW_COUNT;
+import com.skeleton.common.util.EnumMapperType;
+import lombok.Getter;
+
+@Getter
+public enum OrderBy implements EnumMapperType {
+    CREATED_AT("createdAt"),
+    UPDATED_AT("updatedAt"),
+    LIKE_COUNT("likeCount"),
+    SHARE_COUNT("shareCount"),
+    VIEW_COUNT("viewCount");
+
+    private final String value;
+
+    OrderBy(String value) {
+        this.value = value;
+    }
 }
 

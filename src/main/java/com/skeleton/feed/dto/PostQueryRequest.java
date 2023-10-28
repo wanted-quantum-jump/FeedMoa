@@ -1,12 +1,14 @@
 package com.skeleton.feed.dto;
 
-import com.skeleton.feed.enums.Order;
+import com.skeleton.feed.enums.Direction;
 import com.skeleton.feed.enums.OrderBy;
 import com.skeleton.feed.enums.SearchBy;
 import com.skeleton.feed.enums.SnsType;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class PostQueryRequest {
     private String hashtag;
 
@@ -14,7 +16,7 @@ public class PostQueryRequest {
 
     private OrderBy orderBy = OrderBy.CREATED_AT;
 
-    private Order order = Order.DESC;
+    private Direction direction = Direction.DESC;
 
     private SearchBy searchBy = SearchBy.TITLE_CONTENT;
 

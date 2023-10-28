@@ -4,14 +4,13 @@ import com.skeleton.common.util.EnumMapperType;
 import lombok.Getter;
 
 @Getter
-public enum SearchBy implements EnumMapperType {
-    TITLE("title"),
-    CONTENT("content"),
-    TITLE_CONTENT("title,content");
+public enum Direction implements EnumMapperType {
+    ASC("asc"),
+    DESC("desc");
 
     private final String value;
 
-    SearchBy(String value) {
+    Direction(String value) {
         this.value = value;
     }
 }
