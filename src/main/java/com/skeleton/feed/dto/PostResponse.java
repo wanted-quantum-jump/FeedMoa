@@ -5,10 +5,12 @@ import com.skeleton.feed.entity.Post;
 import com.skeleton.feed.entity.PostHashtag;
 import com.skeleton.feed.enums.SnsType;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Getter
 @Builder
 public class PostResponse {
     private Long id;
