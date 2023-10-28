@@ -1,5 +1,6 @@
 package com.skeleton.user.entity;
 
+import com.skeleton.user.enums.UserVerification;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -22,10 +23,19 @@ public class User {
 
     private String password;
 
+    @Enumerated(value = EnumType.STRING)
+    private UserVerification userVerification;
+
     @Builder
-    public User(String account, String email, String password) {
+    public User(String account, String email, String password, UserVerification userVerification) {
         this.account = account;
         this.email = email;
         this.password = password;
+        this.userVerification = UserVerification.UNRESOLVED;
+    }
+
+
+    public void updateVerificationStatus() {
+        this.userVerification = UserVerification.RESOLVED;
     }
 }
