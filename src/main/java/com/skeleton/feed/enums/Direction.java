@@ -4,15 +4,13 @@ import com.skeleton.common.util.EnumMapperType;
 import lombok.Getter;
 
 @Getter
-public enum SnsType implements EnumMapperType {
-    FACEBOOK("facebook"),
-    TWITTER("twitter"),
-    INSTAGRAM("instagram"),
-    THREADS("threads");
+public enum Direction implements EnumMapperType {
+    ASC("asc"),
+    DESC("desc");
 
     private final String value;
 
-    SnsType(String value) {
+    Direction(String value) {
         this.value = value;
     }
 }
