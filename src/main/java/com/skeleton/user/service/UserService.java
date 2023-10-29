@@ -49,7 +49,7 @@ public class UserService {
         User user = userRepository.findByAccount(request.getAccount())
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
 
-        verifyUserPassword(request, user);
+        verifyUserPassword(request, user.getPassword());
 
         user.updateVerificationStatus();
     }
@@ -74,8 +74,8 @@ public class UserService {
         return sb.toString();
     }
 
-    private void verifyUserPassword(UserVerifyRequest request, User user) {
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+    private void verifyUserPassword(UserVerifyRequest request, String password) {
+        if (!passwordEncoder.matches(request.getPassword(),password)) {
             throw new CustomException(ErrorCode.USER_VERIFY_PASSWORD_NOT_MATCH);
         }
     }

@@ -26,11 +26,11 @@ public class UserController {
         return new ResponseEntity<>(verifyCode, HttpStatus.CREATED);
     }
 
-    @PutMapping("/verify")
+    @PatchMapping("/verify")
     public ResponseEntity<?> verifyUser(@Valid @RequestBody UserVerifyRequest request) {
 
         userService.verifyUser(request);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }
