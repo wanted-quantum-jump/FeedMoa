@@ -36,9 +36,10 @@ public class SecurityConfig {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
 
-        // 회원가입 말고는 모두 인증/인가가 필요하다.
+        // 회원가입, verify 말고는 모두 인증/인가가 필요하다.
         http.authorizeHttpRequests(request -> request
                 .requestMatchers(HttpMethod.POST, "/api/signup").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/api/verify").permitAll()
                 .anyRequest().authenticated()
         );
 
