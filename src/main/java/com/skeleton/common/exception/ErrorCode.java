@@ -9,7 +9,9 @@ public enum ErrorCode {
     // RECRUITMENT_NOT_FOUND(HttpStatus.BAD_REQUEST, "R001", "해당하는 채용공고가 없습니다."),
   
     //User
-    USER_ALREADY_EXIST(HttpStatus.BAD_REQUEST, "R001", "이미 계정이 존재합니다."),
+    USER_ALREADY_EXIST(HttpStatus.BAD_REQUEST, "U001", "이미 계정이 존재합니다."),
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "U002", "해당 계정을 찾을 수 없습니다."),
+    USER_VERIFY_PASSWORD_NOT_MATCH(HttpStatus.BAD_REQUEST, "U003", "회원 비밀번호가 일치하지 않습니다."),
 
     //Post
     POST_NOT_FOUND(HttpStatus.NOT_FOUND, "P001", "해당하는 게시물이 없습니다."),
