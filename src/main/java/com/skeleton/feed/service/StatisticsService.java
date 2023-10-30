@@ -49,7 +49,8 @@ public class StatisticsService {
 
         List<Statistics> statisticsList = repository.findByTimeRange(request.getStart(), request.getEnd())
                 .stream()
-                .filter(stat -> userId.equals(stat.getUserId()) && stat.getPost().getContent().contains(hashtag))
+                .filter(stat -> userId.equals(stat.getUserId().getEmail()) && stat.getPost().getPostHashtags()
+                        .contains(hashtag))
                 .collect(Collectors.toList());
 
         StatisticsCalculator calculator = calculators.get(request.getType());
