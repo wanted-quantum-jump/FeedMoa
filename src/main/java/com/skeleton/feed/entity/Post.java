@@ -36,6 +36,10 @@ public class Post extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "post")
     private Set<PostHashtag> postHashtags = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "statistics_id")
+    private Statistics statistics;
+
 
     private int viewCount = 0;
 
