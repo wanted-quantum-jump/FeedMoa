@@ -23,7 +23,8 @@ public enum ErrorCode {
     JSON_PARSE_ERROR(HttpStatus.BAD_REQUEST,"A003","Json 파싱 에러."),
     MISS_MATCH_INPUT(HttpStatus.BAD_REQUEST,"A004","잘못된 데이터 타입 입니다."),
     INVALID_JWT(HttpStatus.UNAUTHORIZED,"A005","잘못된 토큰 입니다."),
-    NEED_AUTHORIZATION_HEADER(HttpStatus.BAD_REQUEST,"A006","Authorization 헤더가 필요합니다.")
+    NEED_AUTHORIZATION_HEADER(HttpStatus.BAD_REQUEST,"A006","Authorization 헤더가 필요합니다."),
+    TYPE_NOT_FOUND(HttpStatus.BAD_REQUEST,"A007","Data Type이 존재하지 않습니다."),
     ;
 
     private final HttpStatus httpStatus;

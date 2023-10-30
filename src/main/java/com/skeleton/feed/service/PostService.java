@@ -3,8 +3,10 @@ package com.skeleton.feed.service;
 import com.skeleton.common.exception.CustomException;
 import com.skeleton.common.exception.ErrorCode;
 import com.skeleton.feed.dto.AddLikeResponse;
+
 import com.skeleton.feed.dto.AddShareResponse;
 import com.skeleton.feed.dto.PostQueryRequest;
+
 import com.skeleton.feed.dto.PostResponse;
 import com.skeleton.feed.entity.Post;
 import com.skeleton.feed.enums.Direction;
@@ -34,7 +36,7 @@ public class PostService {
         boolean searchInContent = shouldSearchInContent(request.getSearchBy());
 
         return postRepository.findPostsByConditions(
-                hashtag, request.getType(), keyword, searchInTitle, searchInContent, pageable)
+                        hashtag, request.getType(), keyword, searchInTitle, searchInContent, pageable)
                 .map(post -> PostResponse.fromEntity(post, limitContent(post.getContent())));
     }
 
@@ -45,7 +47,8 @@ public class PostService {
 
     private Pageable getPageable(PostQueryRequest request) {
         String orderBy = request.getOrderBy().getValue();
-        Sort.Direction direction = (request.getDirection() == Direction.DESC)? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort.Direction direction =
+                (request.getDirection() == Direction.DESC) ? Sort.Direction.DESC : Sort.Direction.ASC;
         return PageRequest.of(request.getPage(), request.getPageCount(), Sort.by(direction, orderBy));
     }
 
@@ -79,4 +82,5 @@ public class PostService {
         post.addShare();
         return new AddShareResponse(post);
     }
+
 }
