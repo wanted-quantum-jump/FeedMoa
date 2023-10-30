@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class StatisticsRequest {
     private String value;
     private String type;
+    private String hashtag;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date start;
 

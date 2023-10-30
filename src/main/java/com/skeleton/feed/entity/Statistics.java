@@ -21,12 +21,13 @@ public class Statistics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String userId;
     @OneToOne
     private Post post;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date postTime;
+
     public int getViewCount() {
         return post.getViewCount();
     }

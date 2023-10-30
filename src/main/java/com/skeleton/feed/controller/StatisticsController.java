@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class StatisticsController {
     private final StatisticsService service;
 
     @GetMapping
-    public ResponseEntity<?> getStatistics(@ModelAttribute StatisticsRequest request) {
-        return ResponseEntity.ok().body(service.getStatistics(request));
+    public ResponseEntity<?> getStatistics(@ModelAttribute StatisticsRequest request, Authentication authentication) {
+        return ResponseEntity.ok().body(service.getStatistics(request, authentication));
     }
 }
