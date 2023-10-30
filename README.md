@@ -1,19 +1,21 @@
 ![sns](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/5cb6e1f9-5708-423d-afde-78e11eb4243f)
 
 # FeedMoa - 소셜 미디어 통합 Feed 서비스
-</br>
+<br>
 
 <div align="center">
 <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"/>
 <img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
 <img src="https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white"/>
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+<img src="	https://img.shields.io/badge/PostMan-FF6C37?style=for-the-badge&logo=postman&logoColor=white">
 </div>
-</br>
+
+<br>
 
 FeedMoa는 유저 계정의 해시태그(`#dani`)를 기반으로 인스타그램, 스레드, 페이스북, 트위터 등 복수의 SNS에 게시된 게시물 중 유저의 해시태그가 포함된 게시물들을 하나의 서비스에서 확인할 수 있는 통합 Feed 어플리케이션입니다. 이를 통해 본 서비스의 고객은 하나의 채널로 유저(`#dani`), 또는 브랜드(`#danishop`) 의 SNS 노출 게시물 및 통계를 확인할 수 있습니다.
-</br>
-</br>
+<br>
+<br>
 <div align="center">
 
 ## ☄️ Team Q members
@@ -59,12 +61,15 @@ FeedMoa는 유저 계정의 해시태그(`#dani`)를 기반으로 인스타그�
 - 게시물 좋아요(API)
 - 게시물 공유(API)
 
+### C. 통계
+- 통계(API)
+
 ## 🙋‍♂️ 담당 역할
 
 <table>
     <tr>
         <td>김서윤</td>
-        <td>게시글 상세 API, 게시글 통계 API 구현</td>
+        <td>게시글 상세 API, 통계 API 구현</td>
     </tr>
     <tr>
         <td>김은비</td>
@@ -72,11 +77,11 @@ FeedMoa는 유저 계정의 해시태그(`#dani`)를 기반으로 인스타그�
     </tr>
     <tr>
         <td>방성원</td>
-        <td>사용자 로그인 API, JWT 인증,인가 구현 </td>
+        <td>사용자 로그인 API, JWT 인증 및 인가 구현 </td>
     </tr>
     <tr>
         <td>장혜리</td>
-        <td>게시글 좋아요 API, 게시글 공유 API 구현</td>
+        <td>게시글 좋아요 API, 게시글 공유 API 구현, 문서 작성</td>
     </tr>
     <tr>
         <td>정지원</td>
@@ -90,21 +95,21 @@ FeedMoa는 유저 계정의 해시태그(`#dani`)를 기반으로 인스타그�
 
 ## 💬 협업 규칙
 
-[Team Q Notion / 팀 규칙 및 컨벤션](https://www.notion.so/f22c8da6c7e4430a90dffc34b7b7d80c)을 참조해 주세요.
+[Team Q Notion - 팀 규칙 및 컨벤션](https://www.notion.so/f22c8da6c7e4430a90dffc34b7b7d80c)을 참조해 주세요.
 
 ## 📖 API Document
-최신 문서는 [Link](https://documenter.getpostman.com/view/15143510/2s9YRGy9Cg)를 참조해 주세요.
+최신 문서는 [FeedMoa API Document](https://documenter.getpostman.com/view/15143510/2s9YRGy9Cg)를 참조해 주세요.
 
 
 ![사용자 회원 가입](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/cef6ddf6-3879-4bab-900f-75a1adfb0291)
 
-![사용자 가입 승인](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/465b412d-174e-47a3-bef8-d37a274c9959)
+![사용자 가입 승인](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/8f05a0cc-0564-4084-8939-4822baa9709d)
 
-![사용자 로그인 - Refres Token 요청](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/7e83cef9-a668-493d-be98-3f8d5c623432)
+![사용자 로그인 - Refresh Token 요청](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/a0c11f98-3ab4-4cad-af7e-45e578f1b2a3)
 
 ![사용자 Access Token 요청](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/defb2fba-f95f-44a2-92a7-b1c023e1cfda)
 
-![게시글 목록](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/3b39e9eb-2c63-4a50-bd25-4bd9e9f11ab4)
+![게시글 목록](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/436b767f-1fe3-4154-9d4d-d5ef46c10616)
 
 ![게시글 좋아요](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/c55eb35d-6e8b-498a-86ec-91c49184214c)
 
