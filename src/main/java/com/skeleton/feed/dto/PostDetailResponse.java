@@ -1,12 +1,11 @@
 package com.skeleton.feed.dto;
 
-import com.skeleton.feed.entity.Hashtag;
 import com.skeleton.feed.entity.Post;
 import com.skeleton.feed.enums.SnsType;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record PostResponse(
+public record PostDetailResponse(
         String contentId,
         SnsType type,
         String title,
@@ -18,7 +17,7 @@ public record PostResponse(
         LocalDateTime createdAt,
         LocalDateTime updatedAt) {
 
-    public PostResponse(Post post) {
+    public PostDetailResponse(Post post) {
         this(
                 post.getContentId(),
                 post.getType(),

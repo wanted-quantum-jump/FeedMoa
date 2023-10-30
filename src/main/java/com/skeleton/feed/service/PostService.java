@@ -3,7 +3,7 @@ package com.skeleton.feed.service;
 import com.skeleton.common.exception.CustomException;
 import com.skeleton.common.exception.ErrorCode;
 import com.skeleton.feed.dto.AddLikeResponse;
-import com.skeleton.feed.dto.PostResponse;
+import com.skeleton.feed.dto.PostDetailResponse;
 import com.skeleton.feed.entity.Post;
 import com.skeleton.feed.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +26,10 @@ public class PostService {
         return new AddLikeResponse(post);
     }
 
-    public PostResponse getPostDetail(Long id) {
+    public PostDetailResponse getPostDetail(Long id) {
         Post post = getPost(id);
         incrementViewCount(id);
-        return new PostResponse(post);
+        return new PostDetailResponse(post);
     }
 
     public Post getPost(Long id) {
