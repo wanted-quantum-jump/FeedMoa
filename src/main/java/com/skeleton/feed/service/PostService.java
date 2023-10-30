@@ -36,7 +36,7 @@ public class PostService {
         boolean searchInContent = shouldSearchInContent(request.getSearchBy());
 
         return postRepository.findPostsByConditions(
-                hashtag, request.getType(), keyword, searchInTitle, searchInContent, pageable)
+                        hashtag, request.getType(), keyword, searchInTitle, searchInContent, pageable)
                 .map(post -> PostResponse.fromEntity(post, limitContent(post.getContent())));
     }
 
@@ -47,7 +47,8 @@ public class PostService {
 
     private Pageable getPageable(PostQueryRequest request) {
         String orderBy = request.getOrderBy().getValue();
-        Sort.Direction direction = (request.getDirection() == Direction.DESC)? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort.Direction direction =
+                (request.getDirection() == Direction.DESC) ? Sort.Direction.DESC : Sort.Direction.ASC;
         return PageRequest.of(request.getPage(), request.getPageCount(), Sort.by(direction, orderBy));
     }
 
@@ -81,21 +82,5 @@ public class PostService {
         post.addShare();
         return new AddShareResponse(post);
     }
-//    public PostResponse getPostDetail(Long id) {
-//        Post post = getPost(id);
-//        incrementViewCount(id);
-//        return new PostResponse(post);
-//    }
-//
-//    public Post getPost(Long id) {
-//        return postRepository.findById(id).orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
-//    }
-//
-//    @Transactional
-//    public void incrementViewCount(Long postId) {
-//        Post post = getPost(postId);
-//        post.addView();
-//        postRepository.save(post);
-//
-//    }
+
 }
