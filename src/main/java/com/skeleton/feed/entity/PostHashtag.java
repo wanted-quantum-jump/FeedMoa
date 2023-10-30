@@ -1,5 +1,6 @@
 package com.skeleton.feed.entity;
 
+import com.skeleton.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Table(name = "post_hashtag")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PostHashtag {
+public class PostHashtag extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false)

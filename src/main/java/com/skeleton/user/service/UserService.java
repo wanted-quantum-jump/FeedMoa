@@ -5,6 +5,7 @@ import com.skeleton.common.exception.ErrorCode;
 import com.skeleton.user.crypto.PasswordEncoder;
 import com.skeleton.user.dto.UserSignupRequest;
 import com.skeleton.user.dto.UserSignupResponse;
+import com.skeleton.user.dto.UserVerifyRequest;
 import com.skeleton.user.entity.User;
 import com.skeleton.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +43,19 @@ public class UserService {
         return verifyCode;
     }
 
+    @Transactional
+    public void verifyUser(UserVerifyRequest request) {
+
+        User user = userRepository.findByAccount(request.getAccount())
+                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+
+        verifyUserPassword(request, user.getPassword());
+
+        user.updateVerificationStatus();
+    }
+
+
+
     private void checkDuplicateEmail(UserSignupRequest request) {
         userRepository.findByAccount(request.getAccount())
                 .ifPresent(user -> {
@@ -59,4 +73,12 @@ public class UserService {
         }
         return sb.toString();
     }
+
+    private void verifyUserPassword(UserVerifyRequest request, String password) {
+        if (!passwordEncoder.matches(request.getPassword(),password)) {
+            throw new CustomException(ErrorCode.USER_VERIFY_PASSWORD_NOT_MATCH);
+        }
+    }
+
+
 }

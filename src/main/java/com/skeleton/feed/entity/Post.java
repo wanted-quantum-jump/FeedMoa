@@ -42,11 +42,12 @@ public class Post extends BaseTimeEntity {
     private int likeCount = 0;
 
     private int shareCount = 0;
-    
+
     // == 비즈니스 로직 == //
-    public void addlike(){
-        this.likeCount +=1;
+    public void addLike() {
+        this.likeCount += 1;
     }
+
     public void addView() {
         this.viewCount += 1;
     }
@@ -55,5 +56,10 @@ public class Post extends BaseTimeEntity {
         return postHashtags.stream()
                 .map(postHashtag -> postHashtag.getHashtag().getName())
                 .toList();
+    }
+
+    public void addShare() {
+        this.shareCount += 1;
+
     }
 }
