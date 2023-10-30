@@ -16,7 +16,8 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public ResponseEntity<Page<PostResponse>> getPostsByQuery(@ModelAttribute PostQueryRequest request, Authentication authentication) {
+    public ResponseEntity<Page<PostResponse>> getPostsByQuery(@ModelAttribute PostQueryRequest request,
+                                                              Authentication authentication) {
         return ResponseEntity.ok().body(postService.getPostsByQuery(request, authentication));
     }
 
@@ -30,10 +31,4 @@ public class PostController {
     private ResponseEntity<?> addShare(@PathVariable Long id) {
         return ResponseEntity.ok().body(postService.addShare(id));
     }
-//    @GetMapping("{id}")
-//    private ResponseEntity<?> getPost(@PathVariable Long id) {
-//        return ResponseEntity.ok().body(postService.getPostDetail(id));
-//
-//    }
-
 }
