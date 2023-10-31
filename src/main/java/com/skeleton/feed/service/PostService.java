@@ -76,7 +76,7 @@ public class PostService {
         post.addLike();
         return new AddLikeResponse(post);
     }
-
+    @Transactional(readOnly = true)
     public PostDetailResponse getPostDetail(Long id) {
         Post post = getPost(id);
         incrementViewCount(id);
@@ -87,7 +87,6 @@ public class PostService {
         return postRepository.findById(id).orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
     }
 
-    @Transactional
     public void incrementViewCount(Long postId) {
         Post post = getPost(postId);
         post.addView();
