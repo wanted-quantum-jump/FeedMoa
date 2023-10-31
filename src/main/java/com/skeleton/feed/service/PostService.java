@@ -77,7 +77,6 @@ public class PostService {
         return new AddLikeResponse(post);
     }
 
-
     public PostDetailResponse getPostDetail(Long id) {
         Post post = getPost(id);
         incrementViewCount(id);
