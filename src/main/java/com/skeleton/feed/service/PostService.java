@@ -3,13 +3,10 @@ package com.skeleton.feed.service;
 import com.skeleton.common.exception.CustomException;
 import com.skeleton.common.exception.ErrorCode;
 import com.skeleton.feed.dto.AddLikeResponse;
-
 import com.skeleton.feed.dto.PostDetailResponse;
-
 import com.skeleton.feed.dto.AddShareResponse;
 import com.skeleton.feed.dto.PostQueryRequest;
 import com.skeleton.feed.dto.PostResponse;
-
 import com.skeleton.feed.entity.Post;
 import com.skeleton.feed.enums.Direction;
 import com.skeleton.feed.enums.SearchBy;
@@ -28,6 +25,7 @@ import org.springframework.util.StringUtils;
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
+    private final CountService countService;
 
     @Transactional(readOnly = true)
     public Page<PostResponse> getPostsByQuery(PostQueryRequest request, Authentication authentication) {
@@ -76,21 +74,15 @@ public class PostService {
         post.addLike();
         return new AddLikeResponse(post);
     }
-    @Transactional
+    @Transactional(readOnly = true)
     public PostDetailResponse getPostDetail(Long id) {
         Post post = getPost(id);
-        incrementViewCount(id);
+        countService.incrementViewCount(id);
         return new PostDetailResponse(post);
     }
 
     private Post getPost(Long id) {
         return postRepository.findById(id).orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
-    }
-
-    private void incrementViewCount(Long postId) {
-        Post post = getPost(postId);
-        post.addView();
-        postRepository.save(post);
     }
 
     @Transactional
