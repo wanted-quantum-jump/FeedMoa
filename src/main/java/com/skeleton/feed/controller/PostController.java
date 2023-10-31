@@ -26,7 +26,7 @@ public class PostController {
         return ResponseEntity.ok().body(postService.addLike(id));
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     private ResponseEntity<?> getPost(@PathVariable Long id) {
         return ResponseEntity.ok().body(postService.getPostDetail(id));
     }
