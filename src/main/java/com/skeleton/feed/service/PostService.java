@@ -76,7 +76,7 @@ public class PostService {
         post.addLike();
         return new AddLikeResponse(post);
     }
-    @Transactional(readOnly = true)
+    @Transactional
     public PostDetailResponse getPostDetail(Long id) {
         Post post = getPost(id);
         incrementViewCount(id);
