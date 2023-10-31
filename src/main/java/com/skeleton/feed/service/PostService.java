@@ -83,11 +83,11 @@ public class PostService {
         return new PostDetailResponse(post);
     }
 
-    public Post getPost(Long id) {
+    private Post getPost(Long id) {
         return postRepository.findById(id).orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
     }
 
-    public void incrementViewCount(Long postId) {
+    private void incrementViewCount(Long postId) {
         Post post = getPost(postId);
         post.addView();
         postRepository.save(post);
