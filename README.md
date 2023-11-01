@@ -115,7 +115,4 @@ FeedMoa는 유저 계정의 해시태그(`#dani`)를 기반으로 인스타그�
 
 ![게시글 공유](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/78f86c5e-d351-48e2-a878-598e53bdddd1)
 
-
-
-
-
+![게시글 상세](https://github.com/wanted-quantum-jump/FeedMoa/assets/46921979/f3fa2b21-c867-4509-a519-a2c3d246daea)
