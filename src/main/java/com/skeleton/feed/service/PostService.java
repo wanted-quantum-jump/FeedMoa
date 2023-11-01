@@ -3,6 +3,7 @@ package com.skeleton.feed.service;
 import com.skeleton.common.exception.CustomException;
 import com.skeleton.common.exception.ErrorCode;
 import com.skeleton.feed.dto.AddLikeResponse;
+import com.skeleton.feed.dto.PostDetailResponse;
 import com.skeleton.feed.dto.AddShareResponse;
 import com.skeleton.feed.dto.PostQueryRequest;
 import com.skeleton.feed.dto.PostResponse;
@@ -24,6 +25,7 @@ import org.springframework.util.StringUtils;
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
+    private final CountService countService;
 
     @Transactional(readOnly = true)
     public Page<PostResponse> getPostsByQuery(PostQueryRequest request, Authentication authentication) {
@@ -34,7 +36,7 @@ public class PostService {
         boolean searchInContent = shouldSearchInContent(request.getSearchBy());
 
         return postRepository.findPostsByConditions(
-                hashtag, request.getType(), keyword, searchInTitle, searchInContent, pageable)
+                        hashtag, request.getType(), keyword, searchInTitle, searchInContent, pageable)
                 .map(post -> PostResponse.fromEntity(post, limitContent(post.getContent())));
     }
 
@@ -45,7 +47,8 @@ public class PostService {
 
     private Pageable getPageable(PostQueryRequest request) {
         String orderBy = request.getOrderBy().getValue();
-        Sort.Direction direction = (request.getDirection() == Direction.DESC)? Sort.Direction.DESC : Sort.Direction.ASC;
+        Sort.Direction direction =
+                (request.getDirection() == Direction.DESC) ? Sort.Direction.DESC : Sort.Direction.ASC;
         return PageRequest.of(request.getPage(), request.getPageCount(), Sort.by(direction, orderBy));
     }
 
@@ -71,6 +74,16 @@ public class PostService {
         post.addLike();
         return new AddLikeResponse(post);
     }
+    @Transactional(readOnly = true)
+    public PostDetailResponse getPostDetail(Long id) {
+        Post post = getPost(id);
+        countService.incrementViewCount(id);
+        return new PostDetailResponse(post);
+    }
+
+    private Post getPost(Long id) {
+        return postRepository.findById(id).orElseThrow(() -> new CustomException(ErrorCode.POST_NOT_FOUND));
+    }
 
     @Transactional
     public AddShareResponse addShare(Long id) {
@@ -78,5 +91,6 @@ public class PostService {
         //snsApiCallerService.clickShareOnSns(post.getContentId(), post.getType());
         post.addShare();
         return new AddShareResponse(post);
+
     }
 }
