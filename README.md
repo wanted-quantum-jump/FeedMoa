@@ -39,12 +39,23 @@ FeedMoa는 유저 계정의 해시태그(`#dani`)를 기반으로 인스타그�
 </div>
 
 ---
+## 0. 목차
+- [1.개발 기간](#1-개발-기간)
+- [2.프로젝트 요구사항](#2-프로젝트-요구사항)
+    - [A. 사용자](#a-사용자)
+    - [B. 게시물](#b-게시물)
+    - [C. 통계](#c-통계)
+- [3.담당 역할](#3-담당-역할)
+- [4.프로젝트 스케줄링](#4-프로젝트-스케줄링)
+- [5.협업 규칙](#5-협업-규칙)
+- [6.API Document](#6-api-document)
+---
 
-## ⏳  개발 기간
+## 1. 개발 기간
 
 `2023.10.25` ~ `2023.10.30` - `#5_days`
 
-## ✍🏻 프로젝트 요구사항
+## 2. 프로젝트 요구사항
 
 [📑소셜 미디어 통합 Feed 서비스 요구사항](https://bow-hair-db3.notion.site/Feed-938175f1165b470e90462d1f1d52fd78)
 
@@ -64,7 +75,7 @@ FeedMoa는 유저 계정의 해시태그(`#dani`)를 기반으로 인스타그�
 ### C. 통계
 - 통계(API)
 
-## 🙋‍♂️ 담당 역할
+## 3. 담당 역할
 
 <table>
     <tr>
@@ -89,15 +100,15 @@ FeedMoa는 유저 계정의 해시태그(`#dani`)를 기반으로 인스타그�
     </tr>
 </table>
 
-## ⏱ 프로젝트 스케줄링
+## 4. 프로젝트 스케줄링
 
 [Github Project](https://github.com/orgs/wanted-quantum-jump/projects/2)에 기능별 [issue](https://github.com/wanted-quantum-jump/FeedMoa/issues)를 등록하여 프로젝트 개발 일정을 관리하였습니다.
 
-## 💬 협업 규칙
+## 5. 협업 규칙
 
 [Team Q Notion - 팀 규칙 및 컨벤션](https://www.notion.so/f22c8da6c7e4430a90dffc34b7b7d80c)을 참조해 주세요.
 
-## 📖 API Document
+## 6. API Document
 최신 문서는 [FeedMoa API Document](https://documenter.getpostman.com/view/15143510/2s9YRGy9Cg)를 참조해 주세요.
 
 
