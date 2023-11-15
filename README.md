@@ -57,7 +57,7 @@ FeedMoa는 유저 계정의 해시태그(`#dani`)를 기반으로 인스타그�
 
 ## 2. 프로젝트 요구사항
 
-[📑소셜 미디어 통합 Feed 서비스 요구사항](https://bow-hair-db3.notion.site/Feed-938175f1165b470e90462d1f1d52fd78)
+[📑소셜 미디어 통합 Feed 서비스 요구사항](https://hyerijang.notion.site/Feed-39175ced7b474263bcadac83807e7a99?pvs=4)
 
 ### A. 사용자
 
